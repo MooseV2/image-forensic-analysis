@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <title>Image Analysis Results: {{ filename }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mhayes-twentytwenty/1.0.0/css/twentytwenty.min.css">
+  <link rel="stylesheet" href="{{ url_for('static',filename='index.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mhayes-twentytwenty/1.0.0/js/jquery.event.move.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mhayes-twentytwenty/1.0.0/js/jquery.twentytwenty.min.js"></script>
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <body>
+    <div class="ui grid main centered">
+      <div class="ui ten wide column">
+        <h1 class="ui dividing header">Forensic Image Analyzer Results</h1>
+        <div class="ui message">
+          <p>The enhancement and analysis of file <strong>{{ filename }}</strong> has completed.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ui grid centered">
+      <div class="ui nine wide column">
+        <h3 class="ui dividing header">Image Colourization</h3>
+        <div class="ui grid">
+          <div class="column">
+            <div class="twentytwenty-container" id="container"><img src="{{ before }}" width="2000"><img src="{{ after }}" width="2000"></div>
+          </div>
+        </div><br>
+      </div>
+    </div>
+    <div class="ui grid centered">
+      <div class="four wide column">
+        <div class="ui segment">
+          <h3 class="ui dividing header">Image Classification Results</h3>
+          <div class="ui segments">{% for key, value in classification.items() %}
+            <div class="ui segment">
+              <h4 class="ui header">{{ key }}</h4>
+              <div class="ui progress blue">
+                <div class="bar" style="width:{{value}}%">
+                  <div class="progress">{{value}}%</div>
+                </div>
+              </div>
+            </div>{% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="six wide column">
+        <div class="ui segment">
+          <h3 class="ui dividing header">Image Details</h3>
+          <table class="ui celled table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>{% for key, value in details.items() %}
+              <tr>
+                <td data-label="Attribute">{{ key.title() }}</td>
+                <td data-label="Value">{{ value }}</td>
+              </tr>{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="ui message tiny">
+      <p>Generated on {{ timestamp }}</p>
+    </div>
+    <hr>
+    <script>
+      $(function () {
+          $('#container').twentytwenty();
+      });
+    </script>
+  </body>
+</html>

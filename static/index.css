@@ -1,0 +1,23 @@
+.container.main {
+    padding: 5em 0 0.5em 0;
+}
+
+#fileselect {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#dndsupport {
+    /* This element is initially invisible. If the user's browser
+        support file drag and drop, it will be made visible in JS
+     */
+    display: none;
+}

@@ -1,0 +1,46 @@
+doctype html
+html
+    title Forensic Image Enchancer
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css')
+    link(rel='stylesheet' href='{{ url_for(\'static\',filename=\'index.css\') }}')
+    script(src='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js')
+    body
+        .ui.text.container.main
+            h1.ui.dividing.header Forensic Image Analyzer
+            .ui.message
+                p
+                    | This forensic image analyzer is capable of enhancing images and analyzing their content.
+                    | To begin, select an image file and enter an email address that you would like to use to
+                    | receive the results.
+        .ui.text.container
+            #filedrag.ui.placeholder.segment.center.aligned.attached
+                .ui.icon.header
+                    h3 Drag an image file here
+                    i#fileicon.file.outline.icon
+                label.ui.primary.button(for='fileselect')
+                    i.cloud.upload.icon
+                    | Select a file
+                input(id='fileselect' type='file' name='fileselect')
+            h6#filetext.ui.bottom.attached.header No file selected
+
+
+            form#content-form.ui.form
+                .ui.warning.icon.message
+                    i.notched.circle.loading.icon
+                    .content
+                        .header Just one second
+                        p We're uploading your image to the forensic analyzer
+                .ui.success.message
+                    .header Submitted successfully
+                    p Please wait for the results to be sent to the email address you provided.
+                .ui.error.message
+                    .header Error!
+                    p Please check the image file and email address and try again.
+                .field
+                    label Email Address
+                    input(type="text" name="email" placeholder="email@example.com")
+                button.ui.button(type="submit") Submit
+
+
+        script(src='{{ url_for(\'static\',filename=\'forensics.js\') }}')
+

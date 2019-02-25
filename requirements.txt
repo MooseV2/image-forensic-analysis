@@ -1,0 +1,7 @@
+pillow
+requests
+pyrebase
+flask
+cloudinary
+sendgrid
+gunicorn

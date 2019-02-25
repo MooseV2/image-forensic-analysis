@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <title>Forensic Image Enchancer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="{{ url_for('static',filename='index.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <body>
+    <div class="ui text container main">
+      <h1 class="ui dividing header">Forensic Image Analyzer</h1>
+      <div class="ui message">
+        <p>
+          This forensic image analyzer is capable of enhancing images and analyzing their content.
+          To begin, select an image file and enter an email address that you would like to use to
+          receive the results.
+        </p>
+      </div>
+    </div>
+    <div class="ui text container">
+      <div class="ui placeholder segment center aligned attached" id="filedrag">
+        <div class="ui icon header">
+          <h3>Drag an image file here</h3><i class="file outline icon" id="fileicon"></i>
+        </div>
+        <label class="ui primary button" for="fileselect"><i class="cloud upload icon"></i>Select a file</label>
+        <input id="fileselect" type="file" name="fileselect">
+      </div>
+      <h6 class="ui bottom attached header" id="filetext">No file selected</h6>
+      <form class="ui form" id="content-form">
+        <div class="ui warning icon message"><i class="notched circle loading icon"></i>
+          <div class="content">
+            <div class="header">Just one second</div>
+            <p>We're uploading your image to the forensic analyzer</p>
+          </div>
+        </div>
+        <div class="ui success message">
+          <div class="header">Submitted successfully</div>
+          <p>Please wait for the results to be sent to the email address you provided.</p>
+        </div>
+        <div class="ui error message">
+          <div class="header">Error!</div>
+          <p>Please check the image file and email address and try again.</p>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="text" name="email" placeholder="email@example.com">
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+      </form>
+    </div>
+    <script src="{{ url_for('static',filename='forensics.js') }}"></script>
+  </body>
+</html>
